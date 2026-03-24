@@ -43,8 +43,8 @@ export const fallbackSiteContent: SiteContent = {
   heroLead:
     "Train under a 1st-degree black belt in Rickson Gracie's lineage. Gi and No-Gi classes for kids and adults — right here in North Ridgeville. Your first two weeks are free.",
   aboutParagraphs: [
-    "Flo Roll Jiu-Jitsu is led by Professor Juan Corral, a first-degree Brazilian Jiu-Jitsu black belt under Luis \"Limão\" Heredia — one of Rickson Gracie's first black belts. With 22 years of experience on and off the mats and a background as a U.S. Marine Corps veteran, Professor Corral brings discipline, dedication, and heart to every class.",
-    "Our classes teach practical self-defense, build genuine confidence, and foster character for men, women, and youth. Whether you are stepping onto the mat for the first time or looking to sharpen your skills, you are welcome here. Your first two weeks are free.",
+    "Flo Roll Jiu-Jitsu is a community-driven academy rooted in authentic Brazilian Jiu-Jitsu. We are committed to a welcoming environment for everyone who steps on the mats — where technique, personal growth, and mutual respect define how we train.",
+    "Our classes develop practical self-defense skills, build genuine confidence, and foster character in men, women, and youth of all levels. Whether you are a complete beginner or an experienced grappler, you will find your place here.",
   ],
   classTypes: {
     gi: {
