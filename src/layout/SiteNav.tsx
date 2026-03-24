@@ -54,18 +54,20 @@ export function SiteNav() {
         onClick={() => setOpen((v) => !v)}
       >
         <span className="site-nav__toggle-label">{open ? "Close menu" : "Open menu"}</span>
-        {open ? <X className="site-nav__toggle-icon" strokeWidth={2} aria-hidden /> : <Menu className="site-nav__toggle-icon" strokeWidth={2} aria-hidden />}
+        <span className="site-nav__toggle-icons" aria-hidden="true">
+          <Menu className="site-nav__toggle-icon site-nav__toggle-icon--menu" strokeWidth={2} />
+          <X className="site-nav__toggle-icon site-nav__toggle-icon--close" strokeWidth={2} />
+        </span>
       </button>
 
-      {open && (
-        <button
-          type="button"
-          className="site-nav__backdrop"
-          aria-label="Close menu"
-          tabIndex={-1}
-          onClick={() => setOpen(false)}
-        />
-      )}
+      <button
+        type="button"
+        className="site-nav__backdrop"
+        aria-label="Close menu"
+        aria-hidden={!open}
+        tabIndex={-1}
+        onClick={() => setOpen(false)}
+      />
 
       <ul
         id={panelId}

@@ -44,18 +44,16 @@ export function Gallery() {
 
       {items === null && <p className="page-prose page-prose--muted">Loading gallery…</p>}
 
-      {items && items.length === 0 && !error && (
-        <RevealSection className="page-block">
-          <p className="page-prose">
-            No images yet. Add “Gallery image” entries in Sanity Studio and publish.
-          </p>
-        </RevealSection>
+      {error && (
+        <p className="page-prose page-prose--muted">
+          Couldn't load the gallery. Check your connection or Sanity settings.
+        </p>
       )}
 
-      {error && items?.length === 0 && (
-        <p className="page-prose page-prose--muted">
-          Couldn’t load the gallery. Check your connection or Sanity settings.
-        </p>
+      {items && items.length === 0 && !error && (
+        <RevealSection className="page-block">
+          <p className="page-prose">No images yet — check back soon.</p>
+        </RevealSection>
       )}
 
       {items && items.length > 0 && (

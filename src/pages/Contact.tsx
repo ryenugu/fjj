@@ -1,4 +1,4 @@
-import { Globe, Mail, MapPin, Phone, Share2 } from "lucide-react";
+import { ArrowUpRight, Globe, Mail, MapPin, Phone, Share2 } from "lucide-react";
 import { ContactForm } from "../components/ContactForm";
 import { InstagramIcon } from "../components/icons/InstagramIcon";
 import { RevealSection } from "../components/RevealSection";
@@ -85,27 +85,27 @@ export function Contact() {
           <div className="contact-card contact-card--wide">
             <div className="contact-card__label-row">
               <MapPin className="contact-card__label-icon" aria-hidden strokeWidth={1.75} />
-              <h2 className="contact-card__label">Location</h2>
+              <h2 className="contact-card__label">Address &amp; Map</h2>
             </div>
-            <address className="contact-address">
-              {contact.addressLines.map((line) => (
-                <span key={line}>
-                  {line}
-                  <br />
-                </span>
-              ))}
-            </address>
-            <p className="contact-map-link">
+            <div className="contact-location-body">
+              <address className="contact-address">
+                {contact.addressLines.map((line) => (
+                  <span key={line}>
+                    {line}
+                    <br />
+                  </span>
+                ))}
+              </address>
               <a
-                className="text-link contact-map-link__anchor"
+                className="contact-maps-link"
                 href={contact.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <MapPin className="contact-map-link__icon" aria-hidden strokeWidth={1.75} />
-                Open in Google Maps
+                Get directions
+                <ArrowUpRight className="contact-maps-link__icon" aria-hidden />
               </a>
-            </p>
+            </div>
           </div>
         </div>
       </RevealSection>

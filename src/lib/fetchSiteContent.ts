@@ -1,4 +1,5 @@
 import { fallbackSiteContent, type ClassSession, type SiteContent } from "../data/siteContent";
+import { getSanityClient } from "./sanityClient";
 
 const SITE_SETTINGS_QUERY = `*[_type == "siteSettings"][0]{
   siteName,
@@ -105,6 +106,12 @@ function mapSanityDoc(doc: UnknownRecord): SiteContent | null {
 }
 
 export async function fetchSiteContentFromSanity(): Promise<SiteContent | null> {
+  // In dev, the /api serverless functions aren't running — call Sanity directly.
+  if (import.meta.env.DEV) {
+    const doc = await getSanityClient().fetch<UnknownRecord | null>(SITE_SETTINGS_QUERY);
+    if (!doc) return null;
+    return mapSanityDoc(doc);
+  }
   const res = await fetch("/api/site-content");
   if (!res.ok) return null;
   const doc = (await res.json()) as UnknownRecord | null;
