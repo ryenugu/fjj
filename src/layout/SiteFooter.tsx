@@ -1,5 +1,6 @@
 import { Globe, Mail, MapPin, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
+import { GoogleMapsIcon } from "../components/icons/GoogleMapsIcon";
 import { InstagramIcon } from "../components/icons/InstagramIcon";
 import { useSiteContent } from "../context/SiteContentContext";
 
@@ -73,10 +74,16 @@ export function SiteFooter() {
               Instagram
             </a>
           </p>
-          <p className="site-footer__muted">
-            <Link className="site-footer__inline-link" to="/contact">
-              Address & map
-            </Link>
+          <p className="site-footer__link-row">
+            <GoogleMapsIcon className="site-footer__link-icon" aria-hidden strokeWidth={1.75} />
+            <a
+              className="site-footer__link"
+              href={contact.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Address &amp; map
+            </a>
           </p>
         </div>
       </div>
