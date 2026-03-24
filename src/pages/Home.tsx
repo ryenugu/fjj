@@ -118,27 +118,6 @@ export function Home() {
         </div>
       </RevealSection>
 
-      {/* ── Benefits grid ── */}
-      <RevealSection className="home-benefits">
-        <div className="home-benefits__inner">
-          <div className="home-benefits__header">
-            <p className="home-benefits__eyebrow">Why jiu-jitsu?</p>
-            <h2 className="home-benefits__heading">
-              The art that changes everything
-            </h2>
-          </div>
-          <div className="home-benefits__grid">
-            {benefits.map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="home-benefits__card">
-                <Icon className="home-benefits__card-icon" aria-hidden strokeWidth={1.5} />
-                <h3 className="home-benefits__card-title">{title}</h3>
-                <p className="home-benefits__card-desc">{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </RevealSection>
-
       {/* ── Testimonials ── */}
       {testimonials.length > 0 && (
         <RevealSection className="home-testimonials">
@@ -161,6 +140,27 @@ export function Home() {
           </div>
         </RevealSection>
       )}
+
+      {/* ── Benefits grid ── */}
+      <RevealSection className="home-benefits">
+        <div className="home-benefits__inner">
+          <div className="home-benefits__header">
+            <p className="home-benefits__eyebrow">Why jiu-jitsu?</p>
+            <h2 className="home-benefits__heading">
+              The art that changes everything
+            </h2>
+          </div>
+          <div className="home-benefits__grid">
+            {benefits.map(({ icon: Icon, title, desc }) => (
+              <div key={title} className="home-benefits__card">
+                <Icon className="home-benefits__card-icon" aria-hidden strokeWidth={1.5} />
+                <h3 className="home-benefits__card-title">{title}</h3>
+                <p className="home-benefits__card-desc">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </RevealSection>
 
       {/* ── Gallery teaser ── */}
       <RevealSection className="page-block home-gallery-teaser">
