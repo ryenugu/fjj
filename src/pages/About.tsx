@@ -2,6 +2,7 @@ import { Activity, Baby, BookOpen, HeartHandshake, Shield, Star, Users, Zap } fr
 import { Link } from "react-router-dom";
 import { RevealSection } from "../components/RevealSection";
 import { useSiteContent } from "../context/SiteContentContext";
+import imgJuan from "../images/Juan.png";
 
 const values = [
   {
@@ -75,6 +76,35 @@ export function About() {
             <p className="page-prose">{text}</p>
           </RevealSection>
         ))}
+
+        <RevealSection className="page-block about-instructor">
+          <div className="about-instructor__inner">
+            <div className="about-instructor__photo-col">
+              <div className="about-instructor__frame">
+                <img
+                  className="about-instructor__img"
+                  src={imgJuan}
+                  alt="Professor Juan Corral"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+            <div className="about-instructor__text">
+              <p className="home-hero__eyebrow">Your instructor</p>
+              <h2 className="about-instructor__name">Professor Juan Corral</h2>
+              <p className="about-instructor__credentials">
+                1st-Degree BJJ Black Belt · 22 Years Experience · U.S. Marine Corps Veteran
+              </p>
+              <p className="page-prose">
+                Under Luis &ldquo;Lim&atilde;o&rdquo; Heredia &mdash; one of Rickson Gracie&rsquo;s
+                first black belts &mdash; Juan has spent 22 years refining a teaching style that is
+                technical, demanding, and deeply welcoming. His military background instilled a
+                respect for discipline and service that shapes every class he runs.
+              </p>
+            </div>
+          </div>
+        </RevealSection>
       </div>
 
       {/* ── Values — full-width tinted band ── */}

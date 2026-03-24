@@ -6,6 +6,7 @@ import imgAcademy from "../images/Haleakala+3-1920w.png";
 import imgGallery1 from "../images/gallery 1.png";
 import imgGallery2 from "../images/gallery 2.png";
 import imgPromotion from "../images/With-Luis-Heredia-promoted-1111-644167b0-1920w.png";
+import imgJuan from "../images/Juan.png";
 
 const benefits = [
   {
@@ -107,8 +108,8 @@ export function Home() {
             <div className="home-professor__frame">
               <img
                 className="home-professor__img"
-                src={imgPromotion}
-                alt="Professor Juan Corral — promotion ceremony"
+                src={imgJuan}
+                alt="Professor Juan Corral"
                 loading="lazy"
                 decoding="async"
               />
