@@ -1,0 +1,97 @@
+/*
+ * theme.css — Flo Roll Jiu-Jitsu Design Tokens
+ *
+ * This is the SINGLE SOURCE OF TRUTH for the site's visual identity.
+ * Edit here to change colours, fonts, spacing, or motion globally.
+ * All component styles in index.css reference these variables exclusively.
+ */
+
+:root {
+  /* ── Backgrounds ──────────────────────────────────────────────
+     Warm parchment tones inspired by the "yesthetics" editorial palette   */
+  --bg:             #faf9f5;                        /* main page background   */
+  --bg-deep:        #e8e6dc;                        /* deeper warm wash       */
+  --bg-subtle:      #f2f0ea;                        /* card / section tint    */
+  --bg-elevated:    rgba(255, 255, 255, 0.92);      /* floating panels / nav  */
+
+  /* ── Text / Ink ───────────────────────────────────────────────  */
+  --ink:            #141413;                        /* primary body text      */
+  --ink-soft:       #3a3a38;                        /* secondary / labels     */
+  --muted:          #b0aea5;                        /* placeholders / captions*/
+
+  /* ── Accent palette (terracotta) ─────────────────────────────
+     Change --accent to instantly recolour every button, link,
+     active indicator, and highlight across the whole site.         */
+  --accent:         #d97757;                        /* main terracotta        */
+  --accent-hover:   #c4613f;                        /* darker hover state     */
+  --accent-mid:     #e08a66;                        /* lighter mid tone       */
+  --accent-pop:     #d97757;                        /* alias used for glows   */
+  --accent-pop-hover: #c4613f;
+
+  /* Secondary palettes */
+  --accent-blue:    #6a9bcc;
+  --accent-green:   #788c5d;
+  --error:          #b94040;
+
+  /* ── Typography ──────────────────────────────────────────────
+     --font-display : UI chrome — nav, buttons, labels, captions
+     --font-body    : prose paragraphs
+     --font-hero    : large hero / section headings                 */
+  --font-display:   "Poppins", Arial, sans-serif;
+  --font-body:      "Lora", Georgia, serif;
+  --font-hero:      "Lora", Georgia, serif;
+
+  /* ── Spacing scale ────────────────────────────────────────────  */
+  --space-1:        0.25rem;
+  --space-2:        0.5rem;
+  --space-3:        0.75rem;
+  --space-4:        1rem;
+  --space-5:        1.25rem;
+  --space-6:        1.5rem;
+  --space-8:        2rem;
+  --space-10:       2.5rem;
+  --space-page:     clamp(1.5rem, 4vw, 3rem);
+
+  /* ── Border radius ────────────────────────────────────────────  */
+  --radius-sm:      4px;
+  --radius-md:      6px;
+  --radius-lg:      10px;
+
+  /* ── Elevation / Shadows ──────────────────────────────────────  */
+  --shadow-sm:      0 4px 12px rgba(20, 20, 19, 0.06);
+  --shadow-md:      0 8px 24px rgba(20, 20, 19, 0.08);
+  --shadow-nav:     0 12px 40px rgba(20, 20, 19, 0.12);
+
+  /* ── Icon sizing (Lucide) ─────────────────────────────────────  */
+  --icon-xs:        0.95rem;
+  --icon-sm:        1.05rem;
+  --icon-md:        1.25rem;
+  --icon-lg:        1.5rem;
+
+  /* ── Layout & touch targets ───────────────────────────────────  */
+  --content-max:    52rem;
+  --tap-min:        44px;
+  --header-z:       50;
+  --nav-overlay-z:  40;
+  --site-header-offset: clamp(4.75rem, 14vw, 5.75rem);
+
+  /* ── Borders ──────────────────────────────────────────────────  */
+  --border-color:       rgba(20, 20, 19, 0.1);
+  --border-color-light: rgba(20, 20, 19, 0.06);
+
+  /* ── Motion ───────────────────────────────────────────────────  */
+  --ease-out:       cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring:    cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast:  0.18s;
+  --duration-normal: 0.25s;
+
+  /* ── Film grain overlay ───────────────────────────────────────  */
+  --grain-opacity:  0.06;
+
+  /* ── Hero decoration line ─────────────────────────────────────
+     The coloured bar below the hero h1.
+     Driven by --accent so it auto-updates with palette changes.   */
+  --hero-bar-color: var(--accent);
+  --hero-bar-width: min(4rem, 22vw);
+  --hero-bar-height: 3px;
+}

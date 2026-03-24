@@ -1,4 +1,4 @@
-import { CalendarDays, Images, MapPin } from "lucide-react";
+import { CalendarDays, Flame, Images, MapPin, Shield, Users, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { RevealSection } from "../components/RevealSection";
 import { useSiteContent } from "../context/SiteContentContext";
@@ -7,10 +7,34 @@ import imgGallery1 from "../images/gallery 1.png";
 import imgGallery2 from "../images/gallery 2.png";
 import imgPromotion from "../images/With-Luis-Heredia-promoted-1111-644167b0-1920w.png";
 
+const benefits = [
+  {
+    icon: Shield,
+    title: "Self-Defense",
+    desc: "Learn practical techniques tested against real resistance. BJJ is the most effective ground-based self-defense in the world.",
+  },
+  {
+    icon: Flame,
+    title: "Confidence",
+    desc: "Build genuine confidence that carries into the classroom, the workplace, and every challenge life throws your way.",
+  },
+  {
+    icon: Zap,
+    title: "Discipline",
+    desc: "Consistency, focus, and respect — the qualities developed on the mats that shape who you become off them.",
+  },
+  {
+    icon: Users,
+    title: "Community",
+    desc: "A team that pushes you, celebrates you, and never lets you quit. Training partners become lifelong friends.",
+  },
+] as const;
+
 export function Home() {
-  const { heroLead, siteName, tagline } = useSiteContent();
+  const { heroLead, siteName, tagline, testimonials } = useSiteContent();
   return (
     <>
+      {/* ── Hero ── */}
       <div className="home-hero">
         <div className="home-hero__visual" aria-hidden>
           <img
@@ -18,7 +42,7 @@ export function Home() {
             src={imgAcademy}
             alt=""
             decoding="async"
-            fetchpriority="high"
+            fetchPriority="high"
           />
           <div className="home-hero__tatami" />
           <div className="home-hero__scrim" />
@@ -30,22 +54,120 @@ export function Home() {
           <div className="home-hero__actions">
             <Link className="btn btn--primary" to="/schedule">
               <CalendarDays className="btn__icon" aria-hidden strokeWidth={1.75} />
-              Class schedule
+              View schedule
             </Link>
             <Link className="btn btn--ghost" to="/contact">
               <MapPin className="btn__icon" aria-hidden strokeWidth={1.75} />
-              Visit & contact
+              Visit &amp; contact
             </Link>
           </div>
         </div>
       </div>
 
+      {/* ── Offer strip ── */}
+      <div className="home-offer-strip">
+        <div className="home-offer-strip__inner">
+          <span className="home-offer-strip__badge">Now Open · North Ridgeville, OH</span>
+          <h2 className="home-offer-strip__headline">
+            Your first two weeks are <strong>FREE</strong>
+          </h2>
+          <p className="home-offer-strip__sub">
+            10% off for veterans, first responders &amp; families
+          </p>
+          <Link className="btn btn--ghost" to="/schedule">
+            <CalendarDays className="btn__icon" aria-hidden strokeWidth={1.75} />
+            See class schedule
+          </Link>
+        </div>
+      </div>
+
+      {/* ── Professor section ── */}
+      <RevealSection className="home-professor">
+        <div className="home-professor__inner">
+          <div className="home-professor__content">
+            <p className="home-hero__eyebrow">Your instructor</p>
+            <h2 className="home-professor__name">Professor Juan Corral</h2>
+            <p className="home-professor__credentials">
+              1st-Degree BJJ Black Belt · 22 Years Experience · U.S. Marine Corps Veteran
+            </p>
+            <p className="home-professor__bio">
+              A first-degree Brazilian Jiu-Jitsu black belt under Luis &ldquo;Lim&atilde;o&rdquo; Heredia
+              &mdash; one of Rickson Gracie&rsquo;s first black belts &mdash; Juan brings 22 years of
+              experience on and off the mats. His classes teach practical self-defense,
+              confidence, and character building for men, women, and youth.
+            </p>
+            <div className="home-professor__cta">
+              <Link className="btn btn--primary" to="/about">
+                <Users className="btn__icon" aria-hidden strokeWidth={1.75} />
+                About the academy
+              </Link>
+            </div>
+          </div>
+          <div className="home-professor__photo-col">
+            <div className="home-professor__frame">
+              <img
+                className="home-professor__img"
+                src={imgPromotion}
+                alt="Professor Juan Corral — promotion ceremony"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </div>
+      </RevealSection>
+
+      {/* ── Benefits grid ── */}
+      <RevealSection className="home-benefits">
+        <div className="home-benefits__inner">
+          <div className="home-benefits__header">
+            <p className="home-benefits__eyebrow">Why jiu-jitsu?</p>
+            <h2 className="home-benefits__heading">
+              The art that changes everything
+            </h2>
+          </div>
+          <div className="home-benefits__grid">
+            {benefits.map(({ icon: Icon, title, desc }) => (
+              <div key={title} className="home-benefits__card">
+                <Icon className="home-benefits__card-icon" aria-hidden strokeWidth={1.5} />
+                <h3 className="home-benefits__card-title">{title}</h3>
+                <p className="home-benefits__card-desc">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </RevealSection>
+
+      {/* ── Testimonials ── */}
+      {testimonials.length > 0 && (
+        <RevealSection className="home-testimonials">
+          <div className="home-testimonials__inner">
+            <div className="home-testimonials__header">
+              <p className="home-testimonials__eyebrow">What students say</p>
+              <h2 className="home-testimonials__heading">Hear it from the mats</h2>
+            </div>
+            <div className="home-testimonials__grid">
+              {testimonials.map((t) => (
+                <figure key={t.name} className="home-testimonials__card">
+                  <blockquote className="home-testimonials__quote">{t.quote}</blockquote>
+                  <figcaption className="home-testimonials__author">
+                    <p className="home-testimonials__name">{t.name}</p>
+                    <p className="home-testimonials__role">{t.role}</p>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </RevealSection>
+      )}
+
+      {/* ── Gallery teaser ── */}
       <RevealSection className="page-block home-gallery-teaser">
         <div className="home-gallery-teaser__header">
           <div>
             <h2 className="home-gallery-teaser__heading">From the Mats</h2>
             <p className="home-gallery-teaser__sub">
-              Technique, patience, and respect for the craft — Gi or No-Gi, kids or adults.
+              Technique, patience, and respect for the craft &mdash; Gi or No-Gi, kids or adults.
             </p>
           </div>
           <Link className="home-gallery-teaser__all" to="/gallery">

@@ -1,4 +1,4 @@
-import { ArrowUpRight, Globe, Mail, MapPin, Phone, Share2 } from "lucide-react";
+import { ArrowUpRight, Clock, Globe, Mail, MapPin, Phone, Share2 } from "lucide-react";
 import { ContactForm } from "../components/ContactForm";
 import { InstagramIcon } from "../components/icons/InstagramIcon";
 import { RevealSection } from "../components/RevealSection";
@@ -22,7 +22,7 @@ function instagramHandleLabel(url: string): string {
 }
 
 export function Contact() {
-  const { contact, siteName } = useSiteContent();
+  const { contact, businessHours } = useSiteContent();
   return (
     <div className="page">
       <header className="page-header">
@@ -30,7 +30,9 @@ export function Contact() {
           <Mail className="page-header__icon" aria-hidden strokeWidth={1.5} />
           <h1 className="page-header__title">Contact</h1>
         </div>
-        <p className="page-header__deck">Reach {siteName} or plan a visit</p>
+        <p className="page-header__deck">
+          Drop in and see for yourself — or reach out and we'll answer every question.
+        </p>
       </header>
 
       <RevealSection className="page-block">
@@ -44,6 +46,7 @@ export function Contact() {
               {contact.phoneDisplay}
             </a>
           </div>
+
           <div className="contact-card">
             <div className="contact-card__label-row">
               <Globe className="contact-card__label-icon" aria-hidden strokeWidth={1.75} />
@@ -58,7 +61,23 @@ export function Contact() {
               {websiteHostLabel(contact.websiteUrl)}
             </a>
           </div>
-          <div className="contact-card contact-card--wide contact-card--connect">
+
+          <div className="contact-card">
+            <div className="contact-card__label-row">
+              <Clock className="contact-card__label-icon" aria-hidden strokeWidth={1.75} />
+              <h2 className="contact-card__label">Hours</h2>
+            </div>
+            <ul className="contact-hours-list">
+              {businessHours.map((row) => (
+                <li key={row.days} className="contact-hours-list__item">
+                  <span className="contact-hours-list__days">{row.days}</span>
+                  <span className="contact-hours-list__time">{row.hours}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="contact-card contact-card--connect">
             <div className="contact-card__label-row">
               <Share2 className="contact-card__label-icon" aria-hidden strokeWidth={1.75} />
               <h2 className="contact-card__label">Connect</h2>
@@ -82,6 +101,7 @@ export function Contact() {
               </a>
             </div>
           </div>
+
           <div className="contact-card contact-card--wide">
             <div className="contact-card__label-row">
               <MapPin className="contact-card__label-icon" aria-hidden strokeWidth={1.75} />

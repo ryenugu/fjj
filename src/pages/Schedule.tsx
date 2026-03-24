@@ -1,10 +1,15 @@
-import { CalendarDays, Clock, Shirt, Zap } from "lucide-react";
+import { CalendarDays, Clock, Shirt, Sparkles, Zap } from "lucide-react";
+import { Link } from "react-router-dom";
 import { RevealSection } from "../components/RevealSection";
 import { RevealStagger } from "../components/RevealStagger";
 import { useSiteContent } from "../context/SiteContentContext";
 
 export function Schedule() {
   const { businessHours, classTypes, scheduleSessions, siteName } = useSiteContent();
+
+  const giSessions = scheduleSessions;
+  const noGiSessions = scheduleSessions.filter((s) => s.kind === "adults");
+
   return (
     <div className="page">
       <header className="page-header">
@@ -25,8 +30,8 @@ export function Schedule() {
             <p className="schedule-card__days">{classTypes.gi.days}</p>
             <p className="schedule-card__desc">{classTypes.gi.description}</p>
             <ul className="schedule-card__times">
-              {scheduleSessions.map((s) => (
-                <li key={`gi-${s.kind}`}>
+              {giSessions.map((s) => (
+                <li key={`gi-${s.label}`}>
                   <span className="schedule-card__kind">{s.label}</span>
                   <span className="schedule-card__time">{s.time}</span>
                 </li>
@@ -42,8 +47,8 @@ export function Schedule() {
             <p className="schedule-card__days">{classTypes.noGi.days}</p>
             <p className="schedule-card__desc">{classTypes.noGi.description}</p>
             <ul className="schedule-card__times">
-              {scheduleSessions.map((s) => (
-                <li key={`nogi-${s.kind}`}>
+              {noGiSessions.map((s) => (
+                <li key={`nogi-${s.label}`}>
                   <span className="schedule-card__kind">{s.label}</span>
                   <span className="schedule-card__time">{s.time}</span>
                 </li>
@@ -66,6 +71,26 @@ export function Schedule() {
             </li>
           ))}
         </RevealStagger>
+      </RevealSection>
+
+      {/* ── First visit callout ── */}
+      <RevealSection className="page-block">
+        <div className="schedule-first-visit">
+          <Sparkles className="schedule-first-visit__icon" aria-hidden strokeWidth={1.5} />
+          <div>
+            <h2 className="schedule-first-visit__title">
+              Your first two weeks are free
+            </h2>
+            <p className="schedule-first-visit__desc">
+              No experience needed, no commitment required. Just show up in comfortable
+              clothes and we'll take care of everything else. Classes are small by design —
+              so you'll get real attention from day one.
+            </p>
+            <Link className="btn btn--primary" to="/contact">
+              Contact us to plan your first visit
+            </Link>
+          </div>
+        </div>
       </RevealSection>
     </div>
   );

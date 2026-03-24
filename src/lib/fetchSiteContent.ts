@@ -101,6 +101,7 @@ function mapSanityDoc(doc: UnknownRecord): SiteContent | null {
     },
     scheduleSessions: mergeSessions(doc.scheduleSessions),
     businessHours: mergeHours(doc.businessHours),
+    testimonials: fallbackSiteContent.testimonials,
     contact: mergeContact(doc.contact),
   };
 }

@@ -8,6 +8,12 @@ export interface ClassSession {
   time: string;
 }
 
+export interface Testimonial {
+  quote: string;
+  name: string;
+  role: string;
+}
+
 export interface SiteContent {
   siteName: string;
   tagline: string;
@@ -19,6 +25,7 @@ export interface SiteContent {
   };
   scheduleSessions: ClassSession[];
   businessHours: { days: string; hours: string }[];
+  testimonials: Testimonial[];
   contact: {
     phoneDisplay: string;
     phoneTel: string;
@@ -32,19 +39,19 @@ export interface SiteContent {
 
 export const fallbackSiteContent: SiteContent = {
   siteName: "Flo Roll Jiu-Jitsu",
-  tagline: "Join the Flo Roll Jiu-Jitsu family",
+  tagline: "Brazilian Jiu-Jitsu for Every Body",
   heroLead:
-    "A community-driven academy offering Brazilian Jiu-Jitsu, self-defense, youth development, and fitness-based martial arts — for all ages and skill levels.",
+    "Train under a 1st-degree black belt in Rickson Gracie's lineage. Gi and No-Gi classes for kids and adults — right here in North Ridgeville. Your first two weeks are free.",
   aboutParagraphs: [
-    "We are passionate about Brazilian Jiu-Jitsu and committed to a welcoming environment for everyone who steps on the mats. Authentic technique, personal growth on and off the mats, and a steady focus on discipline and support define how we train.",
-    "Students learn at their own pace. Whether you are new to grappling or building on years of experience, the journey stays challenging, supportive, and rewarding.",
+    "Flo Roll Jiu-Jitsu is led by Professor Juan Corral, a first-degree Brazilian Jiu-Jitsu black belt under Luis \"Limão\" Heredia — one of Rickson Gracie's first black belts. With 22 years of experience on and off the mats and a background as a U.S. Marine Corps veteran, Professor Corral brings discipline, dedication, and heart to every class.",
+    "Our classes teach practical self-defense, build genuine confidence, and foster character for men, women, and youth. Whether you are stepping onto the mat for the first time or looking to sharpen your skills, you are welcome here. Your first two weeks are free.",
   ],
   classTypes: {
     gi: {
       label: "Gi",
       description:
         "Traditional kimono training — grips, control, and technique with the gi.",
-      days: "Mondays & Wednesdays",
+      days: "Mondays & Wednesdays (Kids + Adults) · Tuesdays & Thursdays (Kids 12–15)",
     },
     noGi: {
       label: "No-Gi",
@@ -54,12 +61,33 @@ export const fallbackSiteContent: SiteContent = {
     },
   },
   scheduleSessions: [
-    { kind: "kids", label: "Kids", time: "4:45 pm – 5:45 pm" },
+    { kind: "kids", label: "Kids (Ages 6–11)", time: "4:45 pm – 5:45 pm" },
+    { kind: "kids", label: "Kids (Ages 12–15)", time: "4:45 pm – 5:45 pm" },
     { kind: "adults", label: "Adults", time: "6:00 pm – 7:00 pm" },
   ],
   businessHours: [
     { days: "Monday – Thursday", hours: "4:30 pm – 7:30 pm" },
     { days: "Friday – Sunday", hours: "Closed" },
+  ],
+  testimonials: [
+    {
+      quote:
+        "Professor Corral is the real deal. His passion for jiu-jitsu and for his students is evident from day one. My kids have gained confidence and discipline they carry into everything they do.",
+      name: "Melissa R.",
+      role: "Parent",
+    },
+    {
+      quote:
+        "I walked in nervous on my first class and left feeling welcomed. The instruction is technical, the vibe is zero ego. Best decision I made this year.",
+      name: "Marcus T.",
+      role: "Adult Student",
+    },
+    {
+      quote:
+        "My son is 8 and has completely transformed. He's more focused in school, more confident with other kids, and he actually asks to go to class.",
+      name: "David K.",
+      role: "Parent",
+    },
   ],
   contact: {
     phoneDisplay: "(216) 290-9352",
