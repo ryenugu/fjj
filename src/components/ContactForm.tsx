@@ -2,11 +2,8 @@ import { Mail, Send } from "lucide-react";
 import { FormEvent, useState } from "react";
 import { useSiteContent } from "../context/SiteContentContext";
 
-const WEB3FORMS_URL = "https://api.web3forms.com/submit";
-
 export function ContactForm() {
   const { contact, siteName } = useSiteContent();
-  const web3Key = import.meta.env.VITE_WEB3FORM_API_KEY?.trim();
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [mailtoTried, setMailtoTried] = useState(false);
 
@@ -19,37 +16,22 @@ export function ContactForm() {
     const phone = String(fd.get("phone") ?? "").trim();
     const message = String(fd.get("message") ?? "").trim();
 
-    if (web3Key) {
-      setStatus("sending");
-      try {
-        const res = await fetch(WEB3FORMS_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify({
-            access_key: web3Key,
-            subject: `Website message — ${siteName}`,
-            name,
-            email,
-            message: [
-              phone ? `Phone: ${phone}` : null,
-              "",
-              message,
-            ]
-              .filter((line) => line !== null)
-              .join("\n"),
-          }),
-        });
-        const data = (await res.json()) as { success?: boolean; message?: string };
-        if (data.success) {
-          setStatus("sent");
-          form.reset();
-        } else {
-          setStatus("error");
-        }
-      } catch {
-        setStatus("error");
+    setStatus("sending");
+    setMailtoTried(false);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ siteName, name, email, phone, message }),
+      });
+      const data = (await res.json()) as { success?: boolean };
+      if (res.ok && data.success) {
+        setStatus("sent");
+        form.reset();
+        return;
       }
-      return;
+    } catch {
+      // Fall through to mailto on local dev or temporary API issues.
     }
 
     const subject = encodeURIComponent(`Message from ${siteName} website`);
@@ -64,6 +46,7 @@ export function ContactForm() {
       ].join("\n")
     );
 
+    setStatus("error");
     setMailtoTried(true);
     window.location.href = `mailto:${contact.email}?subject=${subject}&body=${body}`;
   }
@@ -75,9 +58,8 @@ export function ContactForm() {
         <h2 className="contact-form__heading">Send a message</h2>
       </div>
       <p className="contact-form__hint">
-        {web3Key
-          ? "Send a message and we’ll get it by email."
-          : "Submitting opens your email app with this message — send it when you’re ready. Or set WEB3FORM_API_KEY in .env.local (see .env.example) for in-browser send."}
+        Send a message and we’ll get it by email. If submission fails, your email app
+        will open with the message filled in.
       </p>
 
       <form className="contact-form" onSubmit={handleSubmit}>
@@ -149,13 +131,11 @@ export function ContactForm() {
             disabled={status === "sending" || status === "sent"}
           >
             <Send className="btn__icon" aria-hidden strokeWidth={1.75} />
-            {web3Key
-              ? status === "sending"
-                ? "Sending…"
-                : status === "sent"
-                  ? "Sent"
-                  : "Send message"
-              : "Open in email"}
+            {status === "sending"
+              ? "Sending…"
+              : status === "sent"
+                ? "Sent"
+                : "Send message"}
           </button>
         </div>
 
@@ -175,7 +155,7 @@ export function ContactForm() {
           </p>
         )}
 
-        {!web3Key && mailtoTried && (
+        {mailtoTried && (
           <p className="contact-form__status" role="status">
             If your email app didn’t open, reach us at{" "}
             <a className="text-link" href={`mailto:${contact.email}`}>

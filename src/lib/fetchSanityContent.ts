@@ -1,5 +1,3 @@
-import { getSanityClient } from "./sanityClient";
-
 const GALLERY_ITEMS = `*[_type == "galleryItem"] | order(order asc, _createdAt asc) {
   _id,
   title,
@@ -15,6 +13,7 @@ export interface GalleryItemRow {
 }
 
 export async function fetchGalleryItems(): Promise<GalleryItemRow[]> {
-  const client = getSanityClient();
-  return client.fetch<GalleryItemRow[]>(GALLERY_ITEMS);
+  const res = await fetch("/api/gallery-items");
+  if (!res.ok) return [];
+  return (await res.json()) as GalleryItemRow[];
 }

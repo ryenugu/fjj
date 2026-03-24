@@ -1,6 +1,6 @@
 /**
  * Seeds a sample Gallery document into Sanity (production dataset).
- * Requires SANITY_API_WRITE_TOKEN (or write-capable VITE_SANITY_API_KEY) in .env.local.
+ * Requires SANITY_API_WRITE_TOKEN in .env.local.
  * Run: npm run seed:sanity
  */
 import { createClient } from "@sanity/client";
@@ -13,14 +13,10 @@ const root = path.join(__dirname, "..");
 
 const projectId = process.env.VITE_SANITY_PROJECT_ID?.trim() || "9guj7jch";
 const dataset = process.env.VITE_SANITY_DATASET || "production";
-const token =
-  process.env.SANITY_API_WRITE_TOKEN?.trim() ||
-  process.env.VITE_SANITY_API_KEY?.trim();
+const token = process.env.SANITY_API_WRITE_TOKEN?.trim();
 
 if (!token) {
-  console.error(
-    "Set SANITY_API_WRITE_TOKEN (Editor) or a write-capable VITE_SANITY_API_KEY in .env.local — see .env.example."
-  );
+  console.error("Set SANITY_API_WRITE_TOKEN (Editor) in .env.local — see .env.example.");
   process.exit(1);
 }
 

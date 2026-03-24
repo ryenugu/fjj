@@ -1,5 +1,4 @@
 import { fallbackSiteContent, type ClassSession, type SiteContent } from "../data/siteContent";
-import { getSanityClient } from "./sanityClient";
 
 const SITE_SETTINGS_QUERY = `*[_type == "siteSettings"][0]{
   siteName,
@@ -106,8 +105,9 @@ function mapSanityDoc(doc: UnknownRecord): SiteContent | null {
 }
 
 export async function fetchSiteContentFromSanity(): Promise<SiteContent | null> {
-  const sanity = getSanityClient();
-  const doc = await sanity.fetch<UnknownRecord | null>(SITE_SETTINGS_QUERY);
+  const res = await fetch("/api/site-content");
+  if (!res.ok) return null;
+  const doc = (await res.json()) as UnknownRecord | null;
   if (!doc) return null;
   return mapSanityDoc(doc);
 }
