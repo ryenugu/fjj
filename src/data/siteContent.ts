@@ -100,7 +100,7 @@ export const fallbackSiteContent: SiteContent = {
     ],
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=32660+Center+Ridge+Road%2C+North+Ridgeville%2C+OH+44039",
-    websiteUrl: "https://www.florolljiu-jitsu.com/",
+    websiteUrl: "https://www.florolljj.com/",
     instagramUrl: "https://www.instagram.com/florolljiu_jitsu/",
   },
 };

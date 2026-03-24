@@ -60,7 +60,7 @@ export function SiteFooter() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              florolljiu-jitsu.com
+              florolljj.com
             </a>
           </p>
           <p className="site-footer__link-row">
