@@ -118,50 +118,6 @@ export function Home() {
         </div>
       </RevealSection>
 
-      {/* ── Testimonials ── */}
-      {testimonials.length > 0 && (
-        <RevealSection className="home-testimonials">
-          <div className="home-testimonials__inner">
-            <div className="home-testimonials__header">
-              <p className="home-testimonials__eyebrow">What students say</p>
-              <h2 className="home-testimonials__heading">Hear it from the mats</h2>
-            </div>
-            <div className="home-testimonials__grid">
-              {testimonials.map((t) => (
-                <figure key={t.name} className="home-testimonials__card">
-                  <blockquote className="home-testimonials__quote">{t.quote}</blockquote>
-                  <figcaption className="home-testimonials__author">
-                    <p className="home-testimonials__name">{t.name}</p>
-                    <p className="home-testimonials__role">{t.role}</p>
-                  </figcaption>
-                </figure>
-              ))}
-            </div>
-          </div>
-        </RevealSection>
-      )}
-
-      {/* ── Benefits grid ── */}
-      <RevealSection className="home-benefits">
-        <div className="home-benefits__inner">
-          <div className="home-benefits__header">
-            <p className="home-benefits__eyebrow">Why jiu-jitsu?</p>
-            <h2 className="home-benefits__heading">
-              The art that changes everything
-            </h2>
-          </div>
-          <div className="home-benefits__grid">
-            {benefits.map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="home-benefits__card">
-                <Icon className="home-benefits__card-icon" aria-hidden strokeWidth={1.5} />
-                <h3 className="home-benefits__card-title">{title}</h3>
-                <p className="home-benefits__card-desc">{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </RevealSection>
-
       {/* ── Gallery teaser ── */}
       <RevealSection className="page-block home-gallery-teaser">
         <div className="home-gallery-teaser__header">
@@ -228,6 +184,50 @@ export function Home() {
               </Link>
             </div>
           </nav>
+        </div>
+      </RevealSection>
+
+      {/* ── Testimonials ── */}
+      {testimonials.length > 0 && (
+        <RevealSection className="home-testimonials">
+          <div className="home-testimonials__inner">
+            <div className="home-testimonials__header">
+              <p className="home-testimonials__eyebrow">What students say</p>
+              <h2 className="home-testimonials__heading">Hear it from the mats</h2>
+            </div>
+            <div className="home-testimonials__grid">
+              {testimonials.map((t) => (
+                <figure key={t.name} className="home-testimonials__card">
+                  <blockquote className="home-testimonials__quote">{t.quote}</blockquote>
+                  <figcaption className="home-testimonials__author">
+                    <p className="home-testimonials__name">{t.name}</p>
+                    <p className="home-testimonials__role">{t.role}</p>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </RevealSection>
+      )}
+
+      {/* ── Benefits grid ── */}
+      <RevealSection className="home-benefits">
+        <div className="home-benefits__inner">
+          <div className="home-benefits__header">
+            <p className="home-benefits__eyebrow">Why jiu-jitsu?</p>
+            <h2 className="home-benefits__heading">
+              The art that changes everything
+            </h2>
+          </div>
+          <div className="home-benefits__grid">
+            {benefits.map(({ icon: Icon, title, desc }) => (
+              <div key={title} className="home-benefits__card">
+                <Icon className="home-benefits__card-icon" aria-hidden strokeWidth={1.5} />
+                <h3 className="home-benefits__card-title">{title}</h3>
+                <p className="home-benefits__card-desc">{desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </RevealSection>
     </>
