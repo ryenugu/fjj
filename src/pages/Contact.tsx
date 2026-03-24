@@ -1,0 +1,118 @@
+import { Globe, Mail, MapPin, Phone, Share2 } from "lucide-react";
+import { ContactForm } from "../components/ContactForm";
+import { InstagramIcon } from "../components/icons/InstagramIcon";
+import { RevealSection } from "../components/RevealSection";
+import { useSiteContent } from "../context/SiteContentContext";
+
+function websiteHostLabel(url: string): string {
+  try {
+    return new URL(url).hostname.replace(/^www\./i, "");
+  } catch {
+    return url.replace(/^https?:\/\//i, "").replace(/\/$/, "");
+  }
+}
+
+function instagramHandleLabel(url: string): string {
+  try {
+    const seg = new URL(url).pathname.replace(/^\//, "").split("/")[0];
+    return seg ? `@${seg}` : "Instagram";
+  } catch {
+    return "Instagram";
+  }
+}
+
+export function Contact() {
+  const { contact, siteName } = useSiteContent();
+  return (
+    <div className="page">
+      <header className="page-header">
+        <div className="page-header__title-row">
+          <Mail className="page-header__icon" aria-hidden strokeWidth={1.5} />
+          <h1 className="page-header__title">Contact</h1>
+        </div>
+        <p className="page-header__deck">Reach {siteName} or plan a visit</p>
+      </header>
+
+      <RevealSection className="page-block">
+        <div className="contact-grid">
+          <div className="contact-card">
+            <div className="contact-card__label-row">
+              <Phone className="contact-card__label-icon" aria-hidden strokeWidth={1.75} />
+              <h2 className="contact-card__label">Phone</h2>
+            </div>
+            <a className="contact-card__value" href={`tel:${contact.phoneTel}`}>
+              {contact.phoneDisplay}
+            </a>
+          </div>
+          <div className="contact-card">
+            <div className="contact-card__label-row">
+              <Globe className="contact-card__label-icon" aria-hidden strokeWidth={1.75} />
+              <h2 className="contact-card__label">Website</h2>
+            </div>
+            <a
+              className="contact-card__value"
+              href={contact.websiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {websiteHostLabel(contact.websiteUrl)}
+            </a>
+          </div>
+          <div className="contact-card contact-card--wide contact-card--connect">
+            <div className="contact-card__label-row">
+              <Share2 className="contact-card__label-icon" aria-hidden strokeWidth={1.75} />
+              <h2 className="contact-card__label">Connect</h2>
+            </div>
+            <div className="contact-icon-links">
+              <a
+                className="contact-icon-link"
+                href={`mailto:${contact.email}`}
+                aria-label={`Email ${contact.email}`}
+              >
+                <Mail className="contact-icon-link__glyph" aria-hidden strokeWidth={1.75} />
+              </a>
+              <a
+                className="contact-icon-link"
+                href={contact.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Instagram ${instagramHandleLabel(contact.instagramUrl)}`}
+              >
+                <InstagramIcon className="contact-icon-link__glyph" aria-hidden strokeWidth={1.75} />
+              </a>
+            </div>
+          </div>
+          <div className="contact-card contact-card--wide">
+            <div className="contact-card__label-row">
+              <MapPin className="contact-card__label-icon" aria-hidden strokeWidth={1.75} />
+              <h2 className="contact-card__label">Location</h2>
+            </div>
+            <address className="contact-address">
+              {contact.addressLines.map((line) => (
+                <span key={line}>
+                  {line}
+                  <br />
+                </span>
+              ))}
+            </address>
+            <p className="contact-map-link">
+              <a
+                className="text-link contact-map-link__anchor"
+                href={contact.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <MapPin className="contact-map-link__icon" aria-hidden strokeWidth={1.75} />
+                Open in Google Maps
+              </a>
+            </p>
+          </div>
+        </div>
+      </RevealSection>
+
+      <RevealSection className="page-block">
+        <ContactForm />
+      </RevealSection>
+    </div>
+  );
+}
