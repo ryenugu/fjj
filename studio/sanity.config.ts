@@ -7,7 +7,7 @@ const projectId = process.env.SANITY_STUDIO_PROJECT_ID || "9guj7jch";
 const dataset = process.env.SANITY_STUDIO_DATASET || "production";
 
 export default defineConfig({
-  name: "yesthetics",
+  name: "fjj",
   title: "Flo Roll site content",
 
   projectId,
