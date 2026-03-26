@@ -1,4 +1,4 @@
-import { CalendarDays, Clock, Shirt, Sparkles, Zap } from "lucide-react";
+import { CalendarDays, Clock, Gift, Shirt, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { RevealSection } from "../components/RevealSection";
 import { RevealStagger } from "../components/RevealStagger";
@@ -76,15 +76,16 @@ export function Schedule() {
       {/* ── First visit callout ── */}
       <RevealSection className="page-block">
         <div className="schedule-first-visit">
-          <Sparkles className="schedule-first-visit__icon" aria-hidden strokeWidth={1.5} />
+          <Gift className="schedule-first-visit__icon" aria-hidden strokeWidth={1.5} />
           <div>
             <h2 className="schedule-first-visit__title">
               Your first two weeks are free
             </h2>
             <p className="schedule-first-visit__desc">
-              No experience needed, no commitment required. Just show up in comfortable
-              clothes and we'll take care of everything else. Classes are small by design —
-              so you'll get real attention from day one.
+              You don&apos;t need experience. You don&apos;t need to be young, fit, or in shape.
+            </p>
+            <p className="schedule-first-visit__desc">
+              Jiu-jitsu isn&apos;t for the perfect—it&apos;s for the ones willing to start.
             </p>
             <Link className="btn btn--primary" to="/contact">
               Contact us to plan your first visit

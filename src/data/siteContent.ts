@@ -72,21 +72,15 @@ export const fallbackSiteContent: SiteContent = {
   testimonials: [
     {
       quote:
-        "Professor Corral is the real deal. His passion for jiu-jitsu and for his students is evident from day one. My kids have gained confidence and discipline they carry into everything they do.",
-      name: "Melissa R.",
-      role: "Parent",
+        "Juan is an outstanding Jiu-Jitsu instructor with a wealth of experience, and I highly recommend him",
+      name: "Rosy Corral",
+      role: "Google review",
     },
     {
       quote:
-        "I walked in nervous on my first class and left feeling welcomed. The instruction is technical, the vibe is zero ego. Best decision I made this year.",
-      name: "Marcus T.",
-      role: "Adult Student",
-    },
-    {
-      quote:
-        "My son is 8 and has completely transformed. He's more focused in school, more confident with other kids, and he actually asks to go to class.",
-      name: "David K.",
-      role: "Parent",
+        "Awesome new place to train! Juan Corral is legit, he received his black belt from Luis Heredia (a legendary Rickson Gracie black belt). I've known and trained with Juan for 5 years from Chagrin Valley jujitsu where he trained and taught. He's a talented teacher for beginners and advanced students of all ages. Highly recommend!",
+      name: "Anthony Marra",
+      role: "Google review",
     },
   ],
   contact: {
@@ -101,6 +95,6 @@ export const fallbackSiteContent: SiteContent = {
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=32660+Center+Ridge+Road%2C+North+Ridgeville%2C+OH+44039",
     websiteUrl: "https://www.florolljj.com/",
-    instagramUrl: "https://www.instagram.com/florolljiu_jitsu/",
+    instagramUrl: "https://www.instagram.com/florolljj/",
   },
 };
