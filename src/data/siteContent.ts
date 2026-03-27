@@ -39,7 +39,7 @@ export interface SiteContent {
 
 export const fallbackSiteContent: SiteContent = {
   siteName: "Flo Roll Jiu-Jitsu",
-  tagline: "Brazilian Jiu-Jitsu for Every Body",
+  tagline: "North Ridgeville's home for jiu-jitsu",
   heroLead:
     "Train under a 1st-degree black belt in Rickson Gracie's lineage. Gi and No-Gi classes for kids and adults — right here in North Ridgeville. Your first two weeks are free.",
   aboutParagraphs: [
