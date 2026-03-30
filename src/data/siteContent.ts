@@ -73,13 +73,13 @@ export const fallbackSiteContent: SiteContent = {
     {
       quote:
         "Juan is an outstanding Jiu-Jitsu instructor with a wealth of experience, and I highly recommend him",
-      name: "Rosy Corral",
+      name: "Rosy",
       role: "Google review",
     },
     {
       quote:
         "Awesome new place to train! Juan Corral is legit, he received his black belt from Luis Heredia (a legendary Rickson Gracie black belt). I've known and trained with Juan for 5 years from Chagrin Valley jujitsu where he trained and taught. He's a talented teacher for beginners and advanced students of all ages. Highly recommend!",
-      name: "Anthony Marra",
+      name: "Anthony",
       role: "Google review",
     },
   ],
