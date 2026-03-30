@@ -32,7 +32,7 @@ const benefits = [
 ] as const;
 
 export function Home() {
-  const { heroLead, siteName, tagline, testimonials } = useSiteContent();
+  const { heroLead, siteName, testimonials } = useSiteContent();
   return (
     <>
       {/* ── Hero ── */}
@@ -50,8 +50,7 @@ export function Home() {
         </div>
         <div className="home-hero__content">
           <p className="home-hero__eyebrow">{siteName}</p>
-          <h1 className="home-hero__title">{tagline}</h1>
-          <p className="home-hero__lead">{heroLead}</p>
+          <h1 className="home-hero__lead">{heroLead}</h1>
           <div className="home-hero__actions">
             <Link className="btn btn--primary" to="/schedule">
               <CalendarDays className="btn__icon" aria-hidden strokeWidth={1.75} />
@@ -82,20 +81,24 @@ export function Home() {
         </div>
       </div>
 
-      {/* ── Professor section ── */}
+      {/* ── Instructor section ── */}
       <RevealSection className="home-professor">
         <div className="home-professor__inner">
           <div className="home-professor__content">
             <p className="home-hero__eyebrow">Your instructor</p>
-            <h2 className="home-professor__name">Professor Juan Corral</h2>
+            <h2 className="home-professor__name">Juan</h2>
             <p className="home-professor__credentials">
               1st-Degree BJJ Black Belt · 22 Years Experience · U.S. Marine Corps Veteran
             </p>
             <p className="home-professor__bio">
-              A first-degree Brazilian Jiu-Jitsu black belt under Luis &ldquo;Lim&atilde;o&rdquo; Heredia
-              &mdash; one of Rickson Gracie&rsquo;s first black belts &mdash; Juan brings 22 years of
-              experience on and off the mats. His classes teach practical self-defense,
-              confidence, and character building for men, women, and youth.
+              Juan began his Jiu-Jitsu journey under Sergio Penha in Las Vegas, where he earned his
+              blue belt. He later relocated to Maui, Hawaii, and continued his training under Luis
+              Heredia, a black belt under Rickson Gracie.
+            </p>
+            <p className="home-professor__bio">
+              A first-degree Brazilian Jiu-Jitsu black belt under Luis &ldquo;Lim&atilde;o&rdquo;
+              Heredia &mdash; one of Rickson Gracie&rsquo;s first black belts &mdash; Juan brings 22
+              years of experience on and off the mats.
             </p>
             <div className="home-professor__cta">
               <Link className="btn btn--primary" to="/about">
@@ -109,7 +112,7 @@ export function Home() {
               <img
                 className="home-professor__img"
                 src={imgJuan}
-                alt="Professor Juan Corral"
+                alt="Juan"
                 loading="lazy"
                 decoding="async"
               />

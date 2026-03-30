@@ -23,6 +23,11 @@ function str(v: unknown, fallback: string): string {
   return isNonEmptyString(v) ? v : fallback;
 }
 
+/** String field that may be intentionally empty (e.g. homepage headline hidden). */
+function strAllowEmpty(v: unknown, fallback: string): string {
+  return typeof v === "string" ? v : fallback;
+}
+
 function mergeContact(raw: unknown): SiteContent["contact"] {
   const fb = fallbackSiteContent.contact;
   if (!raw || typeof raw !== "object") return fb;
@@ -92,7 +97,7 @@ function mapSanityDoc(doc: UnknownRecord): SiteContent | null {
   const fb = fallbackSiteContent;
   return {
     siteName: doc.siteName,
-    tagline: str(doc.tagline, fb.tagline),
+    tagline: strAllowEmpty(doc.tagline, fb.tagline),
     heroLead: str(doc.heroLead, fb.heroLead),
     aboutParagraphs: mergeParagraphs(doc.aboutParagraphs),
     classTypes: {

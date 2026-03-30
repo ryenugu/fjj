@@ -84,7 +84,7 @@ export function About() {
                 <img
                   className="about-instructor__img"
                   src={imgJuan}
-                  alt="Professor Juan Corral"
+                  alt="Juan"
                   loading="lazy"
                   decoding="async"
                 />
@@ -92,9 +92,14 @@ export function About() {
             </div>
             <div className="about-instructor__text">
               <p className="home-hero__eyebrow">Your instructor</p>
-              <h2 className="about-instructor__name">Professor Juan Corral</h2>
+              <h2 className="about-instructor__name">Juan</h2>
               <p className="about-instructor__credentials">
                 1st-Degree BJJ Black Belt · 22 Years Experience · U.S. Marine Corps Veteran
+              </p>
+              <p className="page-prose">
+                Juan began his Jiu-Jitsu journey under Sergio Penha in Las Vegas, where he earned his
+                blue belt. He later relocated to Maui, Hawaii, and continued his training under Luis
+                Heredia, a black belt under Rickson Gracie.
               </p>
               <p className="page-prose">
                 Under Luis &ldquo;Lim&atilde;o&rdquo; Heredia &mdash; one of Rickson Gracie&rsquo;s
