@@ -6,3 +6,6 @@ dist
 .env
 .env.local
 studio/.env
+studio/.sanity/
+studio/dist/
+studio/node_modules/
