@@ -146,6 +146,8 @@ async function handleUpdate(update) {
       console.error('Upload error:', err.message);
       await reply(chatId, '❌ Failed to upload. Please try again.');
     }
+  } else if (msg.text === '/upload') {
+    await reply(chatId, '📸 Send me your photo now. You can add a caption too — it\'ll be saved as the title.');
   } else if (msg.text?.startsWith('/announce ')) {
     const text = msg.text.slice('/announce '.length).trim();
     if (!text) {
