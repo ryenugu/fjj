@@ -15,11 +15,18 @@ if (!BOT_TOKEN || !SANITY_WRITE_TOKEN) {
 let offset = 0;
 
 async function getUpdates() {
-  const res = await fetch(
-    `https://api.telegram.org/bot${BOT_TOKEN}/getUpdates?offset=${offset}&timeout=30`
-  );
-  const data = await res.json();
-  return data.result || [];
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 15000);
+  try {
+    const res = await fetch(
+      `https://api.telegram.org/bot${BOT_TOKEN}/getUpdates?offset=${offset}&timeout=10`,
+      { signal: controller.signal }
+    );
+    const data = await res.json();
+    return data.result || [];
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 async function getFileUrl(fileId) {
