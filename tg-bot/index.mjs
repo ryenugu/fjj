@@ -148,10 +148,10 @@ async function handleUpdate(update) {
     }
   } else if (msg.text === '/upload') {
     await reply(chatId, '📸 Send me your photo now. You can add a caption too — it\'ll be saved as the title.');
-  } else if (msg.text?.startsWith('/announce ')) {
-    const text = msg.text.slice('/announce '.length).trim();
+  } else if (msg.text?.startsWith('/announce')) {
+    const text = msg.text.slice('/announce'.length).trim();
     if (!text) {
-      await reply(chatId, 'Usage: /announce Your message here');
+      await reply(chatId, 'Usage: /announce Your message here\n\nExample: /announce Free trial week — sign up now!');
       return;
     }
     try {
