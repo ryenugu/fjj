@@ -38,8 +38,31 @@ async function reply(chatId, text) {
   });
 }
 
-async function uploadToSanity(imageBuffer, caption) {
-  const filename = `telegram-${Date.now()}.jpg`;
+async function setAnnouncement(text, enabled) {
+  const res = await fetch(
+    `https://${SANITY_PROJECT_ID}.api.sanity.io/v2021-10-21/data/mutate/${SANITY_DATASET}`,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${SANITY_WRITE_TOKEN}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        mutations: [{
+          patch: {
+            query: "*[_type == 'siteSettings'][0]",
+            set: { 'announcement.text': text, 'announcement.enabled': enabled },
+          },
+        }],
+      }),
+    }
+  );
+  const result = await res.json();
+  if (result.error) throw new Error(JSON.stringify(result.error));
+  return result;
+}
+
+async function uploadToSanity(imageBuffer, caption) {  const filename = `telegram-${Date.now()}.jpg`;
 
   // 1. Upload image asset to Sanity
   const assetRes = await fetch(
@@ -123,9 +146,30 @@ async function handleUpdate(update) {
       console.error('Upload error:', err.message);
       await reply(chatId, '❌ Failed to upload. Please try again.');
     }
+  } else if (msg.text?.startsWith('/announce ')) {
+    const text = msg.text.slice('/announce '.length).trim();
+    if (!text) {
+      await reply(chatId, 'Usage: /announce Your message here');
+      return;
+    }
+    try {
+      await setAnnouncement(text, true);
+      await reply(chatId, `📢 Banner set: "${text}"`);
+    } catch (err) {
+      console.error('Announce error:', err.message);
+      await reply(chatId, '❌ Failed to set announcement.');
+    }
+  } else if (msg.text === '/clearannounce') {
+    try {
+      await setAnnouncement('', false);
+      await reply(chatId, '✅ Announcement banner cleared.');
+    } catch (err) {
+      console.error('Clear announce error:', err.message);
+      await reply(chatId, '❌ Failed to clear announcement.');
+    }
   } else if (msg.text) {
     console.log(`Text message from chat_id: ${chatId} (${msg.from?.username || msg.from?.first_name || 'unknown'})`);
-    await reply(chatId, `Your chat ID is: ${chatId}\nSend me a photo and I'll add it to the gallery.`);
+    await reply(chatId, `Your chat ID is: ${chatId}\nSend me a photo and I'll add it to the gallery.\n\nCommands:\n/announce <message> — show a banner on the site\n/clearannounce — remove the banner`);
   }
 }
 

@@ -10,7 +10,8 @@ const SITE_SETTINGS_QUERY = `*[_type == "siteSettings"][0]{
   classNoGi,
   scheduleSessions,
   businessHours,
-  contact
+  contact,
+  announcement
 }`;
 
 type UnknownRecord = Record<string, unknown>;
@@ -108,7 +109,15 @@ function mapSanityDoc(doc: UnknownRecord): SiteContent | null {
     businessHours: mergeHours(doc.businessHours),
     testimonials: fallbackSiteContent.testimonials,
     contact: mergeContact(doc.contact),
+    announcement: mergeAnnouncement(doc.announcement),
   };
+}
+
+function mergeAnnouncement(raw: unknown): SiteContent["announcement"] {
+  if (!raw || typeof raw !== "object") return null;
+  const a = raw as UnknownRecord;
+  if (!isNonEmptyString(a.text)) return null;
+  return { text: a.text, enabled: a.enabled === true };
 }
 
 export async function fetchSiteContentFromSanity(): Promise<SiteContent | null> {

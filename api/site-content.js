@@ -9,7 +9,8 @@ const SITE_SETTINGS_QUERY = `*[_type == "siteSettings"][0]{
   classNoGi,
   scheduleSessions,
   businessHours,
-  contact
+  contact,
+  announcement
 }`;
 
 export default async function handler(req, res) {

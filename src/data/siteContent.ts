@@ -35,6 +35,7 @@ export interface SiteContent {
     websiteUrl: string;
     instagramUrl: string;
   };
+  announcement: { text: string; enabled: boolean } | null;
 }
 
 export const fallbackSiteContent: SiteContent = {
@@ -97,4 +98,5 @@ export const fallbackSiteContent: SiteContent = {
     websiteUrl: "https://www.florolljj.com/",
     instagramUrl: "https://www.instagram.com/florolljj/",
   },
+  announcement: null,
 };

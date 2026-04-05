@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
+import { AnnouncementBanner } from "../components/AnnouncementBanner";
 import { useSiteContent } from "../context/SiteContentContext";
 import logoSrc from "../images/logo.png";
 import { SiteFooter } from "./SiteFooter";
 import { SiteNav } from "./SiteNav";
 
 export function RootLayout() {
-  const { siteName } = useSiteContent();
+  const { siteName, announcement } = useSiteContent();
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -16,6 +17,10 @@ export function RootLayout() {
   return (
     <div className="shell">
       <div className="grain" aria-hidden />
+
+      {announcement?.enabled && announcement.text && (
+        <AnnouncementBanner text={announcement.text} />
+      )}
 
       <header className="site-header">
         <Link className="site-header__brand" to="/">

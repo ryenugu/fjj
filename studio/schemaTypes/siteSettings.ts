@@ -93,6 +93,26 @@ export default defineType({
       ],
     }),
     defineField({
+      name: "announcement",
+      title: "Announcement banner",
+      type: "object",
+      description: "Displays a banner at the top of every page. Toggle off to hide it.",
+      fields: [
+        {
+          name: "enabled",
+          title: "Show banner",
+          type: "boolean",
+          initialValue: false,
+        },
+        {
+          name: "text",
+          title: "Message",
+          type: "string",
+          description: "Keep it short — one sentence.",
+        },
+      ],
+    }),
+    defineField({
       name: "contact",
       title: "Contact & links",
       type: "object",

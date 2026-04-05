@@ -2439,3 +2439,48 @@ button {
     transform: none !important;
   }
 }
+
+/* ── Announcement Banner ──────────────────────────────────────────── */
+.announcement-banner {
+  position: relative;
+  z-index: calc(var(--header-z) + 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-8);
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+
+.announcement-banner__text {
+  flex: 1;
+  text-align: center;
+}
+
+.announcement-banner__close {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-out);
+  position: absolute;
+  right: var(--space-4);
+}
+
+.announcement-banner__close:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
