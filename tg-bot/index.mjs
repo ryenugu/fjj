@@ -55,12 +55,21 @@ async function setAnnouncement(text, enabled) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        mutations: [{
-          patch: {
-            query: "*[_type == 'siteSettings'][0]",
-            set: { 'announcement.text': text, 'announcement.enabled': enabled },
+        mutations: [
+          {
+            createIfNotExists: {
+              _id: 'siteSettings',
+              _type: 'siteSettings',
+              siteName: 'Flo Roll Jiu-Jitsu',
+            },
           },
-        }],
+          {
+            patch: {
+              id: 'siteSettings',
+              set: { 'announcement.text': text, 'announcement.enabled': enabled },
+            },
+          },
+        ],
       }),
     }
   );
