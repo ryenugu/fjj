@@ -34,12 +34,11 @@
   --error:          #b94040;
 
   /* ── Typography ──────────────────────────────────────────────
-     --font-display : UI chrome — nav, buttons, labels, captions
-     --font-body    : prose paragraphs
-     --font-hero    : large hero / section headings                 */
-  --font-display:   "Poppins", Arial, sans-serif;
-  --font-body:      "Lora", Georgia, serif;
-  --font-hero:      "Lora", Georgia, serif;
+     One stack site-wide; swap --font-sans to retheme all text.   */
+  --font-sans:      "Outfit", system-ui, sans-serif;
+  --font-display:   var(--font-sans);
+  --font-body:      var(--font-sans);
+  --font-hero:      var(--font-sans);
 
   /* ── Spacing scale ────────────────────────────────────────────  */
   --space-1:        0.25rem;

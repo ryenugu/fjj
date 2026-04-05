@@ -42,7 +42,7 @@ export const fallbackSiteContent: SiteContent = {
   siteName: "Flo Roll Jiu-Jitsu",
   tagline: "",
   heroLead:
-    "Train under a 1st-degree black belt in Rickson Gracie's lineage. Gi and No-Gi classes for kids and adults — right here in North Ridgeville. Your first two weeks are free.",
+    "Train under a 1st-degree black belt in Rickson Gracie's lineage. Gi and No-Gi classes for kids and adults — right here in North Ridgeville, OH.",
   aboutParagraphs: [
     "Flo Roll Jiu-Jitsu is a community-driven academy rooted in authentic Brazilian Jiu-Jitsu. We are committed to a welcoming environment for everyone who steps on the mats — where technique, personal growth, and mutual respect define how we train.",
     "Our classes develop practical self-defense skills, build genuine confidence, and foster character in men, women, and youth of all levels. Whether you are a complete beginner or an experienced grappler, you will find your place here.",
