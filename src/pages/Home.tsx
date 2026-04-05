@@ -1,5 +1,7 @@
-import { CalendarDays, Flame, Images, MapPin, Shield, Users, Zap } from "lucide-react";
+import { useCallback, useState } from "react";
+import { CalendarDays, Flame, Images, MapPin, Shield, Users, Zap, ZoomIn } from "lucide-react";
 import { Link } from "react-router-dom";
+import { GalleryLightbox, type GallerySlide } from "../components/GalleryLightbox";
 import { RevealSection } from "../components/RevealSection";
 import { useSiteContent } from "../context/SiteContentContext";
 import imgAcademy from "../images/Haleakala+3-1920w.png";
@@ -31,8 +33,43 @@ const benefits = [
   },
 ] as const;
 
+const HOME_GALLERY_SLIDES: GallerySlide[] = [
+  {
+    fullSrc: imgPromotion,
+    alt: "Promotion ceremony on the academy mats",
+    caption: null,
+  },
+  {
+    fullSrc: imgGallery1,
+    alt: "Students and instructors group photo at the academy",
+    caption: null,
+  },
+  {
+    fullSrc: imgGallery2,
+    alt: "Open mat training at the academy",
+    caption: null,
+  },
+];
+
 export function Home() {
   const { heroLead, siteName, testimonials } = useSiteContent();
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const onCloseLightbox = useCallback(() => setLightboxIndex(null), []);
+
+  const onPrevLightbox = useCallback(() => {
+    setLightboxIndex((i) => {
+      if (i === null) return null;
+      return (i - 1 + HOME_GALLERY_SLIDES.length) % HOME_GALLERY_SLIDES.length;
+    });
+  }, []);
+
+  const onNextLightbox = useCallback(() => {
+    setLightboxIndex((i) => {
+      if (i === null) return null;
+      return (i + 1) % HOME_GALLERY_SLIDES.length;
+    });
+  }, []);
   return (
     <>
       {/* ── Hero ── */}
@@ -121,74 +158,85 @@ export function Home() {
         </div>
       </RevealSection>
 
-      {/* ── Gallery teaser ── */}
+      {/* ── Gallery → Explore → Testimonials (single vertical rhythm) ── */}
+      <div className="home-mats-flow">
       <RevealSection className="page-block home-gallery-teaser">
-        <div className="home-gallery-teaser__header">
-          <div>
-            <h2 className="home-gallery-teaser__heading">From the Mats</h2>
-            <p className="home-gallery-teaser__sub">
-              Technique, patience, and respect for the craft &mdash; Gi or No-Gi, kids or adults.
-            </p>
+        <div className="home-gallery-teaser__inner">
+          <div className="home-gallery-teaser__header">
+            <div>
+              <h2 className="home-gallery-teaser__heading">From the Mats</h2>
+              <p className="home-gallery-teaser__sub">
+                Technique, patience, and respect for the craft &mdash; Gi or No-Gi, kids or adults.
+              </p>
+            </div>
+            <Link className="home-gallery-teaser__all" to="/gallery">
+              <Images aria-hidden strokeWidth={1.75} />
+              See all photos
+            </Link>
           </div>
-          <Link className="home-gallery-teaser__all" to="/gallery">
-            <Images aria-hidden strokeWidth={1.75} />
-            See all photos
-          </Link>
-        </div>
-        <div className="home-gallery-teaser__grid home-gallery-teaser__grid--three">
-          <figure className="home-gallery-teaser__item">
-            <div className="home-gallery-teaser__frame">
-              <img
-                src={imgPromotion}
-                alt="Promotion ceremony on the academy mats"
-                loading="lazy"
-                decoding="async"
-                className="home-gallery-teaser__img home-gallery-teaser__img--top"
-              />
-            </div>
-          </figure>
-          <figure className="home-gallery-teaser__item">
-            <div className="home-gallery-teaser__frame">
-              <img
-                src={imgGallery1}
-                alt="Academy training session"
-                loading="lazy"
-                decoding="async"
-                className="home-gallery-teaser__img"
-              />
-            </div>
-          </figure>
-          <figure className="home-gallery-teaser__item">
-            <div className="home-gallery-teaser__frame">
-              <img
-                src={imgGallery2}
-                alt="Academy training session"
-                loading="lazy"
-                decoding="async"
-                className="home-gallery-teaser__img home-gallery-teaser__img--bottom"
-              />
-            </div>
-          </figure>
-        </div>
-        <div className="home-gallery-teaser__footer">
-          <p className="home-story__explore-label">Explore</p>
-          <nav className="home-story__nav" aria-label="Explore the site">
-            <div className="home-story__nav-row home-story__nav-row--inline">
-              <Link className="home-story__nav-link" to="/about">
-                About the academy
-              </Link>
-              <span className="home-story__nav-sep" aria-hidden>·</span>
-              <Link className="home-story__nav-link" to="/schedule">
-                Weekly schedule
-              </Link>
-              <span className="home-story__nav-sep" aria-hidden>·</span>
-              <Link className="home-story__nav-link" to="/gallery">
-                Gallery
-              </Link>
-            </div>
-          </nav>
+          <div className="home-gallery-teaser__grid home-gallery-teaser__grid--three">
+            {HOME_GALLERY_SLIDES.map((slide, index) => {
+              const positionClass =
+                index === 0
+                  ? "gallery-grid__img--focal"
+                  : index === 2
+                    ? "home-gallery-teaser__img--bottom"
+                    : "";
+              return (
+                <figure key={slide.fullSrc} className="home-gallery-teaser__item">
+                  <button
+                    type="button"
+                    className="gallery-grid__trigger"
+                    onClick={() => setLightboxIndex(index)}
+                    aria-haspopup="dialog"
+                    aria-label={`Open image ${index + 1} of ${HOME_GALLERY_SLIDES.length}: ${slide.alt}`}
+                  >
+                    <span className="gallery-grid__frame">
+                      <img
+                        src={slide.fullSrc}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                        className={`gallery-grid__img ${positionClass}`.trim()}
+                      />
+                      <span className="gallery-grid__shine" aria-hidden />
+                      <span className="gallery-grid__zoom" aria-hidden>
+                        <ZoomIn size={22} strokeWidth={2} />
+                      </span>
+                    </span>
+                  </button>
+                </figure>
+              );
+            })}
+          </div>
+          <div className="home-gallery-teaser__footer">
+            <p className="home-story__explore-label">Explore</p>
+            <nav className="home-story__nav" aria-label="Explore the site">
+              <div className="home-story__nav-row home-story__nav-row--inline">
+                <Link className="home-story__nav-link" to="/about">
+                  About the academy
+                </Link>
+                <span className="home-story__nav-sep" aria-hidden>·</span>
+                <Link className="home-story__nav-link" to="/schedule">
+                  Weekly schedule
+                </Link>
+                <span className="home-story__nav-sep" aria-hidden>·</span>
+                <Link className="home-story__nav-link" to="/gallery">
+                  Gallery
+                </Link>
+              </div>
+            </nav>
+          </div>
         </div>
       </RevealSection>
+
+      <GalleryLightbox
+        openIndex={lightboxIndex}
+        slides={HOME_GALLERY_SLIDES}
+        onClose={onCloseLightbox}
+        onPrev={onPrevLightbox}
+        onNext={onNextLightbox}
+      />
 
       {/* ── Testimonials ── */}
       {testimonials.length > 0 && (
@@ -212,6 +260,7 @@ export function Home() {
           </div>
         </RevealSection>
       )}
+      </div>
 
       {/* ── Benefits grid ── */}
       <RevealSection className="home-benefits">
